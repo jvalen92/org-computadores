@@ -1,0 +1,110 @@
+class BouncingBallSimple{
+    field int BOX_WIDTH;
+    field int BOX_HEIGHT;
+    
+
+    field int ballRadius;
+    field int ballX;
+    field int ballY;
+    field int ballSpeedX;
+    field int ballSpeedY;
+    field String sx;
+    field String sy;
+    field String velX;
+    field String velY;
+ 
+
+    static int  UPDATE_RATE;
+
+    constructor BouncingBallSimple new (){
+        let BOX_WIDTH = 511;
+        let BOX_HEIGHT = 225;
+        let ballRadius = 30;
+        let ballX = ballRadius + 50;
+        let ballY = ballRadius + 20;
+        let ballSpeedX = 3;
+        let ballSpeedY = 2;
+        let UPDATE_RATE = 30;
+        let sx= "( posX :";
+        let sy= " ,posY :";
+        let velX= " ,SpeedX: ";
+
+        let velY= " ,SpeedY: ";
+
+        return this;
+    }
+
+    method void paintComponent(){
+        /*clean the screen
+        //do Screen.clearScreen();
+
+        // draw the box
+        do Screen.setColor(false);
+        do Screen.drawRectangle(0, 0, BOX_WIDTH, BOX_HEIGHT);
+        
+        // draw the ball
+        */
+
+        do Screen.clearScreen();
+        do Output.moveCursor(0,0);
+        do Output.printString(sx);
+        do Output.printInt(ballX);
+        do Output.printInt(",");
+
+
+        do Output.printString(sy);
+        do Output.printInt(ballY);
+        do Output.printInt(",");
+
+
+
+        do Output.printString(velX);
+        do Output.printInt( ballSpeedX);
+        do Output.printInt(",");
+
+
+        do Output.printString(velY);
+        do Output.printInt( ballSpeedY);
+        do Output.printString(" )");
+
+        do Screen.setColor(true);
+        do Screen.drawCircle(ballX,ballY,ballRadius);
+        do Screen.setColor(false);
+
+        //delay
+        return;
+                
+    }
+    
+    method void run(){
+        while(true){
+            let ballX = ballX + ballSpeedX;
+            let ballY = ballY + ballSpeedY;
+        
+        if( (ballX - ballRadius) < 0){
+            let ballSpeedX = -ballSpeedX;
+            let ballX = ballRadius;
+        }else{
+            if((ballX + ballRadius) > BOX_WIDTH){
+                let ballSpeedX = -ballSpeedX;
+                let ballX = BOX_WIDTH - ballRadius;
+            }
+        }
+        if((ballY - ballRadius) < 0){
+            let ballSpeedY = -ballSpeedY;
+            let ballY = ballRadius;
+        }else{
+            if((ballY + ballRadius) > BOX_HEIGHT){
+                let ballSpeedY = -ballSpeedY;
+                let ballY = BOX_HEIGHT - ballRadius;
+            }
+        }
+        //Callback paintComponent()
+        do paintComponent();
+        do Sys.wait(1000 / UPDATE_RATE);
+
+        
+      } 
+	return;
+        }
+}

@@ -1,0 +1,134 @@
+function BouncingBallSimple.new 0
+push constant 7
+call Memory.alloc 1
+pop pointer 0
+push constant 511
+pop this 0
+push constant 225
+pop this 1
+push constant 30
+pop this 2
+push this 2
+push constant 50
+add
+pop this 3
+push this 2
+push constant 20
+add
+pop this 4
+push constant 3
+pop this 5
+push constant 2
+pop this 6
+push constant 30
+pop static 0
+push pointer 0
+return
+function BouncingBallSimple.paintComponent 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push this 3
+push this 4
+push this 2
+call Screen.drawCircle 3
+pop temp 0
+push constant 1000
+push static 0
+call Math.divide 2
+call Sys.wait 1
+pop temp 0
+call Screen.clean 0
+pop temp 0
+push constant 0
+return
+function BouncingBallSimple.run 0
+push argument 0
+pop pointer 0
+label WHILE_EXP0
+push constant 0
+not
+not
+if-goto WHILE_END0
+push this 3
+push this 5
+add
+pop this 3
+push this 4
+push this 6
+add
+pop this 4
+push this 3
+push this 2
+sub
+push constant 0
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 5
+neg
+pop this 5
+push this 2
+pop this 3
+goto IF_END0
+label IF_FALSE0
+push this 3
+push this 2
+add
+push this 0
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 5
+neg
+pop this 5
+push this 0
+push this 2
+sub
+pop this 3
+label IF_FALSE1
+label IF_END0
+push this 4
+push this 2
+sub
+push constant 0
+lt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 6
+neg
+pop this 6
+push this 2
+pop this 4
+goto IF_END2
+label IF_FALSE2
+push this 4
+push this 2
+add
+push this 1
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 6
+neg
+pop this 6
+push this 1
+push this 2
+sub
+pop this 4
+label IF_FALSE3
+label IF_END2
+push pointer 0
+call BouncingBallSimple.paintComponent 1
+pop temp 0
+push constant 0
+return
+goto WHILE_EXP0
+label WHILE_END0

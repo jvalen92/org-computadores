@@ -1,0 +1,7 @@
+class Main(){
+
+var BouncingBallSimple bolita;
+let bolita= BouncingBallSimple.new();
+do bolita.run();
+return;
+}
